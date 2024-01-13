@@ -1,0 +1,28 @@
+<div class="row justify-content-end" style="margin-top: 15px;">
+    <div class="col-4">
+        <a href="/dang-ky" class="btn btn-primary">Đăng ký</a>
+    </div>
+</div>
+<div class="row justify-content-center">
+    <div class="col-6 align-self-center">
+        <form action="/" method="post" >
+            <h1 class="text-center">Đăng nhập</h1>
+            <% if(msg?.length){%>
+                <div class="alert alert-danger"><%= msg[0] %></div>
+            <% } %>
+            <div class="mb-3">
+                <label class="mb-1" for=""> Nhập Email</label>
+                <input type="text" autofocus class="form-control" placeholder="Nhập email..." name="email" value= <%= req?.dataOld?.email ? req?.dataOld?.email: ''%>>
+                <%- req?.errors?.email ? `<span class="text-danger">${req?.errors?.email}</span>`: '' %>
+            </div>
+            <div class="mb-3">
+                <label class="mb-1" for=""> Password</label>
+                <input type="password" class="form-control " placeholder="Nhập password..." name="password">
+                <%- req?.errors?.password ? `<span class="text-danger">${req?.errors?.password}</span>`: '' %>
+            </div>
+           <div class="d-grid">
+                <button class="btn btn-primary">Đăng nhập</button>
+           </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,50 @@
+<div class="mb-3">
+    <h1>Trang chủ</h1>
+    <span class="mb-3">Xin chào <%= user.name %> đã trở lại</span> 
+    <form action="dang-xuat" method="post" >
+        <button class="btn btn-primary">Đăng xuất</button>
+    </form>
+    <hr>    
+    <h2>Thông Tin Cá Nhân</h2>
+    <form action="edit" method="post" >
+        <button class="btn btn-primary">Chỉnh sửa</button>
+    </form>
+    <% if(update[0]?.message?.other){%>
+        <div class="py-3">
+            <div class="row justify-content-start">
+                <div class="col-4 alert <%= update[0].status == 'fail' ? 'alert-danger' : 'alert-success' %>"><%= update[0].message.other %></div>
+            </div>
+        </div>
+    <% } %>
+    <form action="update" method="post">
+        <div class="mb-3">
+            <label class="mb-1" for="">Tên</label>
+            <input <%= edit ? "disabled" : "" %> type="text" placeholder="Nhập tên..." name="name" class="form-control" value=<%=  user?.name ? user.name: '' %>>
+        </div>
+        <div class="mb-3">
+            <label class="mb-1" for="">Email</label>
+            <input <%= edit ? "disabled" : "" %> type="email" placeholder="Nhập email..." name="email" class="form-control" value=<%= data[0]?.email ? data[0].email : user?.email ? user.email: '' %>>
+            <span class="text-danger"><%= update?.length ? update[0].message.email : '' %></span>
+        </div>
+        <% if(!edit){ %>
+            <div class="mb-3">
+                <label class="mb-1" for="">Mật khẩu cũ</label>
+                <input <%= edit ? "disabled" : "" %> type="password" placeholder="Nhập password..." name="password" class="form-control" value=<%= data[0]?.password ? data[0].password : '' %>%>>
+                <span class="text-danger"><%= update?.length ? update[0].message.password : '' %></span>
+            </div> 
+            <div class="mb-3">
+                <label class="mb-1" for="">Mật khẩu mới</label>
+                <input <%= edit ? "disabled" : "" %> type="password" placeholder="Nhập password..." name="passwordNew" class="form-control" value=<%= data[0]?.passwordNew ? data[0].passwordNew : '' %> %>>
+                <span class="text-danger"><%= update?.length ? update[0].message.passwordNew : '' %></span>
+            </div> 
+            <div class="mb-3">
+                <label class="mb-1" for="">Nhập lại mật khẩu mới</label>
+                <input <%= edit ? "disabled" : "" %> type="password" placeholder="Nhập password..." name="passwordNew2" class="form-control" value=<%= data[0]?.passwordNew2 ? data[0].passwordNew2 : '' %> %>>
+                <span class="text-danger"><%= update?.length ? update[0].message.passwordNew2 : '' %></span>
+            </div> 
+            <div class="mb-3 d-grid">
+                <button class="btn btn-primary">Cập nhật</button>
+            </div>
+        <% } %>
+    </form>
+</div>
