@@ -5,7 +5,7 @@ let validateLogin = require('../middleware/validate.login.js');
 let handleError = require('../middleware/validate.error.js')
 
 /* GET home page. */
-router.get('/dang-nhap',handleError, Controller.login);
+router.get('/dang-nhap',handleError,validateLogin, Controller.login);
 router.post('/dang-ky', handleError, Controller.handleRegister);
 router.get('/dang-ky', handleError, Controller.register);
 router.post('/', Controller.handleLogin);
